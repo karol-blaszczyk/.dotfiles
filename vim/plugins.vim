@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'kien/ctrlp.vim' <-- Not maintained any more
   Plug 'ctrlpvim/ctrlp.vim'
 
-  Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} " loaded on command
+  Plug 'scrooloose/nerdtree'
   Plug 'thoughtbot/vim-rspec'
   Plug 'ngmy/vim-rubocop'
   Plug 'tpope/vim-rails'
