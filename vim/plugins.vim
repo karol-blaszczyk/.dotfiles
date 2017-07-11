@@ -13,15 +13,16 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-  Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+  " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
+  Plug 'leafgarland/typescript-vim'
   " Split navigation that works with tmux
   Plug 'christoomey/vim-tmux-navigator'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   " Make tab handle all completions
-  Plug 'ervandew/supertab'
+  " Plug 'ervandew/supertab'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   " Fuzzy file opener
   " Plug 'kien/ctrlp.vim' <-- Not maintained any more

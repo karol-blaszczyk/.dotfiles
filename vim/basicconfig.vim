@@ -3,7 +3,7 @@ syntax on
 set encoding=utf-8
 
 filetype plugin indent on
-
+set path+=**
 set autoindent
 set ts=2 " indent to 2 spaces
 set shiftwidth=2
@@ -26,7 +26,7 @@ set undofile
 " set a directory to store the undo history
 set undodir=~/.vimundo/
 set background=dark
-colorscheme vimbrant
+" colorscheme vimbrant
 highlight ColorColumn ctermbg=7
 highlight ColorColumn guibg=Gray
 
@@ -38,6 +38,6 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*
 set wildignore+=*.bmp,*.ico,*.jpg,*.png
 set wildignore+=*.DS_STORE,*.git,*.svn
