@@ -1,0 +1,25 @@
+#!/bin/bash
+
+ecs-prod() {
+ screen -rd ecs-new-prod || (
+  new="screenrc-ecs-new-prod"
+  cp $HOME/.screenrc $ss_dir/Local/$new
+  for ip in `aws ec2 describe-instances \
+    --filters "Name=tag:aws:cloudformation:stack-name,Values=ecs-production" \
+    --query 'Reservations[].Instances[].PublicIpAddress' | jq -r '.[]'`; do
+   echo "screen ssh ec2-user@${ip}" >> $ss_dir/Local/$new
+  done
+  screen -S ecs-new-prod -c $ss_dir/local/$new
+  )
+}
+
+list_nodes () {
+  local servers=`aws ec2 describe-instances --filters "Name=tag:Env,Values=$1" "Name=tag:Component,Values=ECS" --query 'Reservations[*].Instances[*].PublicDnsName'`
+  echo $servers
+
+}
+
+tnodes () { list_nodes Testing }
+pnodes () { list_nodes Production }
+
+
