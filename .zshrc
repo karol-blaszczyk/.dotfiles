@@ -1,66 +1,63 @@
+
+# [oh-my-zsh] If the above didn't help or you want to skip the verification of
+# [oh-my-zsh] insecure directories you can set the variable ZSH_DISABLE_COMPFIX to
+# [oh-my-zsh] "true" before oh-my-zsh is sourced in your zshrc file.
+export ZSH_DISABLE_COMPFIX="true"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# ==> readline
+# readline is keg-only, which means it was not symlinked into /usr/local,
+# ecause macOS provides BSD libedit.
+# For compilers to find readline you may need to set:
+  export LDFLAGS="-L/usr/local/opt/readline/lib"
+  export CPPFLAGS="-I/usr/local/opt/readline/include"
+
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/karolblaszczyk/.oh-my-zsh
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-# source ~/.bin/tmuxinator.bash
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="muse"
+export ZSH="/Users/karolblaszczyk/.oh-my-zsh"
 
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias go='git checkout '
+alias ts='tig status'
+alias cl='clear'
 
-# export PATH="$HOME/.npm-packages/bin:$PATH"
-# export PATH="/usr/local/sbin:$PATH"
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-# export PATH="/usr/local/opt/node@6/bin:$PATH"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# export PATH="/usr/local/opt/openssl/bin:$PATH"
+alias kpods='kubectl get pods'
+alias k='kubectl'
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME='robbyrussell'
+#"robbyrussell"
 
-alias scp='noglob scp_wrap'
-function scp_wrap {
-	  local -a args
-	    local i
-	      for i in "$@"; do case $i in
-		          (*:*) args+=($i) ;;
-			      (*) args+=(${~i}) ;;
-			        esac; done
-				  command scp "${(@)args}"
-			  }
-
-alias sbw='cd ~/SightBlushProject/SightBlushWeb'
-
-function memfor {
-  if [ -z $(pidof $1) ] 
-  then
-    echo 'Process not found' 
-  else
-   top -stats mem -a -pid $(ps aux | awk '/\'$1'/ && ! /awk/ { print $2; exit; }')
-  fi
-  # top -stats mem -a -pid $(ps aux | awk '/\'$1'/ && ! /awk/ { print $2; exit; }')
-}
-
-function pidof {
-  ps aux | awk '/\'$1'/ && ! /awk/ { print $2; exit; }'
-}
-
-function onports {
-  lsof -i :$1
-}
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -69,10 +66,11 @@ function onports {
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
+unsetopt correct_all
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -81,27 +79,30 @@ function onports {
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ruby gem history history-substring-search terminalapp brew bundler rails nvm react-native)
-
-# User configuration
-# export PATH="/Users/karolblaszczyk/.rvm/gems/ruby-2.2.4@media_manager/bin:/Users/karolblaszczyk/.rvm/gems/ruby-2.2.4@global/bin:/Users/karolblaszczyk/.rvm/rubies/ruby-2.2.4/bin:/Users/karolblaszczyk/.rvm/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/Users/karolblaszczyk/.npm-packages/bin"
-
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(git ruby gem history history-substring-search  brew bundler rails nvm rvm)
 
 source $ZSH/oh-my-zsh.sh
 
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -113,9 +114,6 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -125,40 +123,44 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias be='bundle exec'
-alias runresque="bundle exec env rake resque:workers QUEUE='*' COUNT='3'"
-alias rackc='bundle exec irb -r ./app.rb'
-alias rsidekiq='be sidekiq -C config/sidekiq.yml -r ./app.rb'
-alias devtools='bundle exec rake polishgeeks:dev-tools:check'
-
-alias pull_wp_strike='scp -i ~/.ssh/elasticbenstalk.pem -r ec2-user@ec2-54-187-221-110.us-west-2.compute.amazonaws.com:/var/app/current/* /Users/karolblaszczyk/Strike/MAIN_SITE/current'
-
-alias strikedev='ssh ubuntu@ec2-52-11-230-46.us-west-2.compute.amazonaws.com'
-
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gd='git diff'
-alias go='git checkout '
-alias gk'gitk --all&'
-alias gx='gitx --all'
-alias ts='tig status'
-
-alias cl='clear'
-
-export NVM_DIR="/Users/karolblaszczyk/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
- # export PYENV_ROOT="$HOME/.pyenv"
- # export PATH="$PYENV_ROOT/bin:$PATH"
- # eval "$(pyenv init -)"
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-
-# export PATH="/usr/local/sbin:$PATH"
-# export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 export PATH="/usr/local/sbin:$PATH"
+
+# alias pip=/usr/local/bin/pip3
+
+# https://github.com/jonmosco/kube-ps1/
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+
+
+function all_k8s {
+  export KUBECONFIG=""
+  for f in ~/.kube/*.conf
+  do 
+    echo "Adding config for $f"
+    export KUBECONFIG=$KUBECONFIG:$f
+  done
+}
+function kexec {
+  kubectl exec -it $1 $2 -- /bin/bash
+}
+function klogs {
+  kubectl logs -f deployment/$1 --all-containers=true --since=3m $2
+}
+
+function kcontext {
+  kubectl config set-context --current --namespace $1
+}
+
+alias cleanEvicted="kubectl get pods -A | grep Evicted | awk '{print $2 \" -n \" $1}' | xargs -n 3 kubectl delete pod"
+alias cleanError="kubectl get pods -A | grep Error | awk '{print $2 \" -n \" $1}' | xargs -n 3 kubectl delete pod"
+alias prompass="k  get secret prometheus-basic-auth  -nprometheus -o jsonpath="{.data.plain}" | base64 -d"
+export PATH="$PYENV_ROOT/bin:$PATH"
+GPG_TTY=$(tty)
+export GPG_TTY
+
