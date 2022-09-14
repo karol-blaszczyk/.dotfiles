@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'leafgarland/typescript-vim'
   " Split navigation that works with tmux
   Plug 'christoomey/vim-tmux-navigator'
-
+  Plug 'tmhedberg/SimpylFold'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   " Make tab handle all completions
@@ -27,6 +27,8 @@ call plug#begin('~/.vim/plugged')
   " Fuzzy file opener
   " Plug 'kien/ctrlp.vim' <-- Not maintained any more
   Plug 'ctrlpvim/ctrlp.vim'
+
+  " Plug 'Valloric/YouCompleteMe',  { 'do': './install.py --tern-completer' }
 
   Plug 'scrooloose/nerdtree'
   Plug 'thoughtbot/vim-rspec'
@@ -46,3 +48,7 @@ let g:ctrlp_working_path_mode='ra'
 " If a file is already open, open it again in a new pane instead of switching to the existing pane
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_user_command = 'find %s -type f'
+let g:SimpylFold_docstring_preview=1
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>

@@ -1,4 +1,5 @@
-:let mapleader = ","
+" :let mapleader = ","
+let mapleader = "\<Space>"
 
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
