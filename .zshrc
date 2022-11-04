@@ -93,7 +93,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ruby gem history history-substring-search  brew bundler rails nvm rvm)
+plugins=(git ruby gem history history-substring-search  brew bundler rails nvm rvm kube-ps1)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,9 +134,9 @@ export PATH="/usr/local/sbin:$PATH"
 # alias pip=/usr/local/bin/pip3
 
 # https://github.com/jonmosco/kube-ps1/
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-PS1='$(kube_ps1)'$PS1
-
+# source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+# PS1='$(kube_ps1)'$PS1
+PROMPT=$PROMPT'$(kube_ps1) '
 
 function all_k8s {
   export KUBECONFIG=""
