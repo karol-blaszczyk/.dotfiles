@@ -133,10 +133,8 @@ export PATH="/usr/local/sbin:$PATH"
 
 # alias pip=/usr/local/bin/pip3
 
-# https://github.com/jonmosco/kube-ps1/
-# source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-# PS1='$(kube_ps1)'$PS1
-PROMPT=$PROMPT'$(kube_ps1) '
+  source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+  PS1='$(kube_ps1)'$PS1
 
 function all_k8s {
   export KUBECONFIG=""

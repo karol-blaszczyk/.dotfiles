@@ -26,7 +26,7 @@ set undofile
 " set a directory to store the undo history
 set undodir=~/.vimundo/
 set background=dark
-colorscheme vimbrant
+" colorscheme vimbrant
 highlight ColorColumn ctermbg=7
 highlight ColorColumn guibg=Gray
 
