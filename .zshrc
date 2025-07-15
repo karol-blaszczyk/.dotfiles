@@ -6,14 +6,6 @@ export ZSH_DISABLE_COMPFIX="true"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# ==> readline
-# readline is keg-only, which means it was not symlinked into /usr/local,
-# ecause macOS provides BSD libedit.
-# For compilers to find readline you may need to set:
-  export LDFLAGS="-L/usr/local/opt/readline/lib"
-  export CPPFLAGS="-I/usr/local/opt/readline/include"
-
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -128,6 +120,8 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 export PATH="/usr/local/sbin:$PATH"
 
@@ -162,3 +156,18 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 GPG_TTY=$(tty)
 export GPG_TTY
 
+
+# FRESHA
+# start a shell session authenticated to AWS
+alias aws-shell='aws-vault exec -d 8h -n'
+
+# login to AWS console
+alias aws-login='aws-vault login -d 8h'
+
+# list available AWS profiles
+alias aws-profiles="cat ~/.aws/config | grep '\\[profile' | sed -r 's/^\\[profile (.*)\\]$/\\1/'"
+
+# Elixir/Erlang ASDF path
+export PATH="$HOME/.asdf/shims:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+alias deckhand=~/Fresha/system/deployment/scripts/deckhand/deckhand
